@@ -1,0 +1,232 @@
+Dim x As Double
+Dim y As Double
+Dim strx As String
+Dim stry As String
+Dim result As Double
+Dim operator As Boolean
+Dim op_type As String
+Dim numbutton As Integer
+Dim checkbutton As Boolean
+Private Sub call_api()
+    Dim objWinHTTP
+    Set objWinHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
+    
+    objWinHTTP.Open "GET", "http://43.228.85.133/menu/?fbclid=IwAR3O4MCu5v-Yj1IX95BVsdRRzdAQ2UQsolKFgvfhxwN5bdA-mnX8CR8scfQ"
+    objWinHTTP.SetTimeouts 5000, 5000, 5000, 5000
+
+    Call objWinHTTP.Send(psData)
+    MsgBox (objWinHTTP.Status)
+    MsgBox (objWinHTTP.ResponseText)
+    If objWinHTTP.Status <> 200 Then
+
+    MsgBox ("Something went wrong.")
+
+    End If
+End Sub
+Private Sub btn1_Click()
+    If (checkbutton = True) Then
+        If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "1"
+                 Text1.Text = strx
+            Else
+                stry = stry & "1"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn2_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "2"
+                 Text1.Text = strx
+            Else
+                stry = stry & "2"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn3_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "3"
+                 Text1.Text = strx
+            Else
+                stry = stry & "3"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn4_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+        If (operator = False) Then
+                strx = strx & "4"
+                 Text1.Text = strx
+            Else
+                stry = stry & "4"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn5_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "5"
+                 Text1.Text = strx
+            Else
+                stry = stry & "5"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn6_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "6"
+                 Text1.Text = strx
+            Else
+                stry = stry & "6"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn7_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "7"
+                 Text1.Text = strx
+            Else
+                stry = stry & "7"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn8_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "8"
+                 Text1.Text = strx
+            Else
+                stry = stry & "8"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub btn9_Click()
+If (checkbutton = True) Then
+    If (numbutton < 2) Then
+            If (operator = False) Then
+                strx = strx & "9"
+                 Text1.Text = strx
+            Else
+                stry = stry & "9"
+                Text1.Text = stry
+            End If
+        End If
+    End If
+End Sub
+Private Sub Command1_Click()
+    If (operator = True And op_type = "plus") Then
+        x = Val(strx)
+        y = Val(stry)
+        result = result + x + y
+    ElseIf (operator = True And op_type = "minus") Then
+        x = Val(strx)
+        y = Val(stry)
+        result = result + (x - y)
+    ElseIf (operator = True And op_type = "multiply") Then
+        x = Val(strx)
+        y = Val(stry)
+        If (result = 0) Then
+            result = result + (x * y)
+        Else
+            result = result * y
+        End If
+    ElseIf (operator = True And op_type = "divide") Then
+        x = Val(strx)
+        y = Val(stry)
+        If (result = 0) Then
+            result = result + (x / y)
+        Else
+            result = result / y
+        End If
+    End If
+    Text1.Text = result
+    operator = False
+    checkbutton = False
+    numbutton = 0
+    op_type = ""
+    strx = ""
+    stry = ""
+    call_api
+End Sub
+
+Private Sub Command2_Click()
+    Text1.Text = "0"
+    result = 0
+    operator = False
+    checkbutton = True
+    numbutton = 0
+    strx = ""
+    stry = ""
+End Sub
+
+Private Sub Form_Load()
+    operator = False
+    checkbutton = True
+    strx = ""
+    stry = ""
+    op_type = ""
+    result = 0
+    numbutton = 0
+End Sub
+Private Sub op_divide_Click()
+        If (numbutton <= 1) Then
+        operator = True
+        checkbutton = True
+        numbutton = numbutton + 1
+        op_type = "divide"
+    End If
+End Sub
+
+Private Sub op_minus_Click()
+        If (numbutton <= 1) Then
+        operator = True
+        checkbutton = True
+        numbutton = numbutton + 1
+        op_type = "minus"
+    End If
+End Sub
+
+Private Sub op_multiply_Click()
+        If (numbutton <= 1) Then
+        operator = True
+        checkbutton = True
+        numbutton = numbutton + 1
+        op_type = "multiply"
+    End If
+End Sub
+
+Private Sub op_plus_Click()
+    If (numbutton <= 1) Then
+        operator = True
+        checkbutton = True
+        numbutton = numbutton + 1
+        op_type = "plus"
+    End If
+End Sub
