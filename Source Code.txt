@@ -10,6 +10,10 @@ Dim checkbutton As Boolean
 Private Sub call_api()
     Dim objWinHTTP
     Set objWinHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
+   ''' Dim p As Object
+    '''Dim sInputJson As String
+   '''sInputJson = "{ width: '200', frame: false, height: 130, bodyStyle:'background-color: #ffffcc;',buttonAlign:'right', items: [{ xtype: 'form',  url: '/content.asp'},{ xtype: 'form2',  url: '/content2.asp'}] }"
+
     
     objWinHTTP.Open "GET", "http://43.228.85.133/menu/?fbclid=IwAR3O4MCu5v-Yj1IX95BVsdRRzdAQ2UQsolKFgvfhxwN5bdA-mnX8CR8scfQ"
     objWinHTTP.SetTimeouts 5000, 5000, 5000, 5000
@@ -17,6 +21,11 @@ Private Sub call_api()
     Call objWinHTTP.Send(psData)
     MsgBox (objWinHTTP.Status)
     MsgBox (objWinHTTP.ResponseText)
+   ''' Set p = JSON.parse(sInputJson)
+
+    '''MsgBox "Parsed object output: " & JSON.toString(p)
+
+    '''MsgBox "Get Bodystyle data: " & p.Item("img1")
     If objWinHTTP.Status <> 200 Then
 
     MsgBox ("Something went wrong.")
@@ -173,7 +182,6 @@ Private Sub Command1_Click()
     op_type = ""
     strx = ""
     stry = ""
-    call_api
 End Sub
 
 Private Sub Command2_Click()
@@ -229,4 +237,7 @@ Private Sub op_plus_Click()
         numbutton = numbutton + 1
         op_type = "plus"
     End If
+End Sub
+Private Sub printapi_Click()
+    call_api
 End Sub
